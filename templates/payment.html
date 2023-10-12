@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="payButton" hidden>Pay</button>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var options = {
+            "key": "rzp_test_FBbs2mmdX6xLBz",
+            "subscription_id": "{{subscriptionData.id}}",
+            "name": "Acme Corp.",
+            "description": "Monthly Test Plan",
+            "image": "/your_logo.jpg",
+            "handler": function (response) {
+                window.location.href = '/success';
+                // alert(response.razorpay_payment_id),
+                // alert(response.razorpay_subscription_id),
+                // alert(response.razorpay_signature);
+            },
+            "prefill": {
+                "name": "Shubham Limbasiya",
+                "email": "shubhamlimbasiya87@gmail.com",
+                "contact": "+918490013203"
+            },
+            "notes": {
+                "note_key_1": "Tea. Earl Grey. Hot",
+                "note_key_2": "Make it so."
+            },
+            "theme": {
+                "color": "#F37254"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        document.getElementById('payButton').onclick = function (e) {
+            rzp1.open();
+            e.preventDefault();
+        }
+
+        // Function to execute when the DOM is ready
+        document.addEventListener("DOMContentLoaded", function () {
+            // Select the button by its ID
+            var button = document.getElementById("payButton");
+
+            // Simulate a click on the button
+            button.click();
+
+            // You can also attach an event listener to the button to perform an action when it's clicked
+            button.addEventListener("click", function () {
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
